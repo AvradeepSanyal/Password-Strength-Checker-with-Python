@@ -10,7 +10,7 @@ def check_password_strength(password):
         return "Weak: Password must contain an upper character"
     if not any (char.islower() for char in password):
         return "Weak: Password must contain an lower character"
-    if not re.search(r'[!@#$%^&*()-+]', password):
+    if not re.search(r'[!@#$%^&*()-+,]', password): #Regex re.search(pattern, string)
         return "Medium: Password must contain a special character"
     return "Strong: Your password is secured!"
 
@@ -28,5 +28,6 @@ def password_checker():
         print(result)
 
 #Run the password checker tool
-if __name__ == "__main__":
+#ensures the program runs only when executed directly, not when imported.
+if __name__ == "__main__": #here py will understand that this is the main file to run atmost first thus py will not run the code from top to bottom
     password_checker()

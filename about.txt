@@ -1,0 +1,40 @@
+flow -
+User enters password.
+Program checks rules one by one.
+Returns Weak/Medium/Strong.
+Loop continues until user types “exit”.
+
+confusion log-
+1. why not only if, why if not is used 
+- any(...) returns True if at least one character is a digit.
+If no digits are found, any(...) returns False.
+So not any(...) becomes True when there are no digits.
+That’s when you want to show the error.
+2. can i import my prev password generator code here then use that here to strength check that
+3. learn more about re
+
+explaination-
+line 1 - re is a module
+line 4 to 15 -
+* It takes one input: password (the string typed by the user).
+This function will return a message about how strong the password is.
+* len(password) → counts how many characters are in the password.
+If fewer than 8 → returns immediately with “Weak” message.
+Rule 1: Password must be at least 8 characters long.
+*char.isdigit() → checks if a character is a number (0–9).
+any(... for char in password) → True if at least one digit exists.
+not any(...) → True if no digits at all.
+If no digits → return “Weak” message.
+Rule 2: Must contain at least one number
+* char.isupper() → checks if a character is uppercase (A–Z).
+If no uppercase letters → return “Weak”.
+Rule 3: Must contain at least one uppercase letter
+* char.islower() → checks if a character is lowercase (a–z).
+If no lowercase letters → return “Weak”.
+Rule 4: Must contain at least one lowercase letter.
+* re.search(pattern, password) → looks for the pattern inside the password.
+Pattern: [!@#$%^&*()-+,] → means “any one of these special characters.”
+If none found → return “Medium” message.
+Rule 5: Must contain at least one special character.
+* If all checks pass → return “Strong” message.
+This is the final “success” case.
